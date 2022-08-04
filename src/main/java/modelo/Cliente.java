@@ -90,6 +90,21 @@ public class Cliente {
         return "Cliente{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", sexo=" + sexo + ", endereco=" + endereco + ", cidade=" + cidade + ", cep=" + cep + '}';
     }
 
+    public Cliente(String nome, String cpf, String telefone, String sexo, String endereco, String cidade, String cep) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.sexo = sexo;
+        this.endereco = endereco;
+        this.cidade = cidade;
+        this.cep = cep;
+    }
+
+    public Cliente() {
+    }
+    
+    
+
 
     
     

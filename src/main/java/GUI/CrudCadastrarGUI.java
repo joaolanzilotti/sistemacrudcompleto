@@ -4,9 +4,12 @@
  */
 package GUI;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 
 /**
@@ -36,10 +39,10 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
         caixaNome = new javax.swing.JTextField();
         caixaTelefone = new javax.swing.JTextField();
         caixaSexo = new javax.swing.JTextField();
-        caixaCpf = new javax.swing.JTextField();
         caixaEndereco = new javax.swing.JTextField();
         caixaCidade = new javax.swing.JTextField();
         caixaCep = new javax.swing.JTextField();
+        caixaCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,13 +66,17 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
 
         caixaSexo.setText("Sexo");
 
-        caixaCpf.setText("Cpf");
-
         caixaEndereco.setText("Endereco");
 
         caixaCidade.setText("Cidade");
 
         caixaCep.setText("Cep");
+
+        try {
+            caixaCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,8 +97,8 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
                     .addComponent(caixaEndereco)
                     .addComponent(caixaSexo)
                     .addComponent(caixaTelefone)
-                    .addComponent(caixaCpf)
-                    .addComponent(caixaNome))
+                    .addComponent(caixaNome)
+                    .addComponent(caixaCpf))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,10 +125,16 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarMouseClicked
-        Cliente cliente = new Cliente();
+        
+        if(caixaNome.getText().equals("") || caixaCpf.getText().equals("") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Campos Obrigatórios!");
+        }
+        else{
+        Cliente cliente = new Cliente(caixaNome.getText(), caixaCpf.getText().replace(".", "").replace("-", ""),caixaTelefone.getText(),caixaSexo.getText(),caixaEndereco.getText(),caixaCidade.getText(),caixaCep.getText());
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
         EntityManager em = emf.createEntityManager();
@@ -129,7 +142,14 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
         em.getTransaction().begin();
         em.persist(cliente);
         em.getTransaction().commit();
+        JOptionPane.showMessageDialog(null, "Usuário Cadastrado com Sucesso!");
         em.close();
+        new CrudGUI().setVisible(true);
+        this.dispose();}
+        
+        
+        
+        
     }//GEN-LAST:event_botaoCadastrarMouseClicked
 
     private void botaoVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVoltarMouseClicked
@@ -177,7 +197,7 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
     private javax.swing.JButton botaoVoltar;
     private javax.swing.JTextField caixaCep;
     private javax.swing.JTextField caixaCidade;
-    private javax.swing.JTextField caixaCpf;
+    private javax.swing.JFormattedTextField caixaCpf;
     private javax.swing.JTextField caixaEndereco;
     private javax.swing.JTextField caixaNome;
     private javax.swing.JTextField caixaSexo;

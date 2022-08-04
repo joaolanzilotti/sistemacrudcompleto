@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 
@@ -41,6 +42,7 @@ public class CrudGUI extends javax.swing.JFrame {
         
         
     }
+
     
     public CrudGUI() {
         initComponents();
@@ -153,11 +155,13 @@ public class CrudGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarMouseClicked
         new CrudCadastrarGUI().setVisible(true);
         this.dispose();
+
     }//GEN-LAST:event_botaoCadastrarMouseClicked
 
     /**

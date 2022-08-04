@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -40,8 +40,8 @@
                   <Component id="caixaEndereco" max="32767" attributes="0"/>
                   <Component id="caixaSexo" max="32767" attributes="0"/>
                   <Component id="caixaTelefone" max="32767" attributes="0"/>
-                  <Component id="caixaCpf" max="32767" attributes="0"/>
                   <Component id="caixaNome" max="32767" attributes="0"/>
+                  <Component id="caixaCpf" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -104,11 +104,6 @@
         <Property name="text" type="java.lang.String" value="Sexo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="caixaCpf">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cpf"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="caixaEndereco">
       <Properties>
         <Property name="text" type="java.lang.String" value="Endereco"/>
@@ -122,6 +117,13 @@
     <Component class="javax.swing.JTextField" name="caixaCep">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cep"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="caixaCpf">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="###.###.###-##" subtype="-1" type="5"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
