@@ -16,7 +16,8 @@ public class CrudGUI extends javax.swing.JFrame {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
         EntityManager em = emf.createEntityManager();
         
-        List<Cliente> clientes = em.createQuery("select c from cliente c", Cliente.class).getResultList();
+        
+        List<Cliente> clientes = em.createQuery("select c from Cliente c ", Cliente.class).getResultList();
         
         DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
         model.setNumRows(0);
@@ -30,12 +31,11 @@ public class CrudGUI extends javax.swing.JFrame {
                 cliente1.getCpf(),
                 cliente1.getTelefone(),
                 cliente1.getSexo(),
-                cliente1.getEndereco()
-                
-                   
-                    
-            };
-            
+                cliente1.getEndereco(),
+                cliente1.getCidade(),
+                cliente1.getCep()};
+            model.addRow(linhasLista);
+            tableClientes.setModel(model);
             
         }
         
