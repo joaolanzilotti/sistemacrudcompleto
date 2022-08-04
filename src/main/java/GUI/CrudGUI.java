@@ -67,6 +67,11 @@ public class CrudGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         botaoCadastrar.setText("Cadastrar");
+        botaoCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoCadastrarMouseClicked(evt);
+            }
+        });
 
         botaoRemover.setText("Remover");
 
@@ -149,6 +154,11 @@ public class CrudGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarMouseClicked
+
+        
+    }//GEN-LAST:event_botaoCadastrarMouseClicked
 
     /**
      * @param args the command line arguments
