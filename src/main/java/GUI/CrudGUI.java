@@ -156,8 +156,8 @@ public class CrudGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarMouseClicked
-
-        
+        new CrudCadastrarGUI().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botaoCadastrarMouseClicked
 
     /**

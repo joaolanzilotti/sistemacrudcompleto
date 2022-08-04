@@ -31,39 +31,97 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        botaoCadastrar = new javax.swing.JButton();
+        botaoVoltar = new javax.swing.JButton();
+        caixaNome = new javax.swing.JTextField();
+        caixaTelefone = new javax.swing.JTextField();
+        caixaSexo = new javax.swing.JTextField();
+        caixaCpf = new javax.swing.JTextField();
+        caixaEndereco = new javax.swing.JTextField();
+        caixaCidade = new javax.swing.JTextField();
+        caixaCep = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoCadastrar.setText("Cadastrar");
+        botaoCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                botaoCadastrarMouseClicked(evt);
             }
         });
+
+        botaoVoltar.setText("Voltar");
+        botaoVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoVoltarMouseClicked(evt);
+            }
+        });
+
+        caixaNome.setText("Nome");
+
+        caixaTelefone.setText("Telefone");
+
+        caixaSexo.setText("Sexo");
+
+        caixaCpf.setText("Cpf");
+
+        caixaEndereco.setText("Endereco");
+
+        caixaCidade.setText("Cidade");
+
+        caixaCep.setText("Cep");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(botaoVoltar)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(197, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(128, 128, 128))
+                .addContainerGap(154, Short.MAX_VALUE)
+                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(147, 147, 147))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(caixaCep, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(caixaCidade)
+                    .addComponent(caixaEndereco)
+                    .addComponent(caixaSexo)
+                    .addComponent(caixaTelefone)
+                    .addComponent(caixaCpf)
+                    .addComponent(caixaNome))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(198, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(80, 80, 80))
+                .addGap(21, 21, 21)
+                .addComponent(caixaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(botaoVoltar))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                Cliente cliente = new Cliente();
+    private void botaoCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarMouseClicked
+        Cliente cliente = new Cliente();
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
         EntityManager em = emf.createEntityManager();
@@ -72,7 +130,12 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
         em.persist(cliente);
         em.getTransaction().commit();
         em.close();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_botaoCadastrarMouseClicked
+
+    private void botaoVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVoltarMouseClicked
+        new CrudGUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botaoVoltarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -110,6 +173,14 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botaoCadastrar;
+    private javax.swing.JButton botaoVoltar;
+    private javax.swing.JTextField caixaCep;
+    private javax.swing.JTextField caixaCidade;
+    private javax.swing.JTextField caixaCpf;
+    private javax.swing.JTextField caixaEndereco;
+    private javax.swing.JTextField caixaNome;
+    private javax.swing.JTextField caixaSexo;
+    private javax.swing.JTextField caixaTelefone;
     // End of variables declaration//GEN-END:variables
 }
