@@ -100,6 +100,13 @@ public class Cliente {
         this.cep = cep;
     }
 
+    public Cliente(String cpf) {
+        this.cpf = cpf;
+    }
+
+    
+    
+
     public Cliente() {
     }
     

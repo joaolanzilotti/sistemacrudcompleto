@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
@@ -13,7 +14,8 @@ import modelo.Cliente;
 public class CrudGUI extends javax.swing.JFrame {
 
     public void tabelaGUI(){
-    
+        
+    try{
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
         EntityManager em = emf.createEntityManager();
         
@@ -40,7 +42,8 @@ public class CrudGUI extends javax.swing.JFrame {
             
         }
         
-        
+    }
+    catch(Exception e1){JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!");}
     }
 
     
@@ -65,9 +68,14 @@ public class CrudGUI extends javax.swing.JFrame {
         botaoConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableClientes = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        botaoCadastrar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoCadastrar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         botaoCadastrar.setText("Cadastrar");
         botaoCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,10 +83,24 @@ public class CrudGUI extends javax.swing.JFrame {
             }
         });
 
+        botaoRemover.setBackground(new java.awt.Color(0, 9, 39));
+        botaoRemover.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        botaoRemover.setForeground(new java.awt.Color(255, 255, 255));
         botaoRemover.setText("Remover");
+        botaoRemover.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoRemoverMouseClicked(evt);
+            }
+        });
 
+        botaoAtualizar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoAtualizar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAtualizar.setText("Atualizar");
 
+        botaoConsultar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoConsultar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoConsultar.setForeground(new java.awt.Color(255, 255, 255));
         botaoConsultar.setText("Consultar");
 
         tableClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -121,37 +143,58 @@ public class CrudGUI extends javax.swing.JFrame {
             tableClientes.getColumnModel().getColumn(7).setMaxWidth(90);
         }
 
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("                   CRUD");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Apps-Java-icon.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(botaoConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(botaoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(192, 192, 192))
+                .addContainerGap(95, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(botaoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(botaoConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(112, 112, 112)))
+                        .addGap(94, 94, 94))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(249, 249, 249))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(464, 464, 464))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(botaoRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoAtualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addComponent(botaoCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -163,6 +206,10 @@ public class CrudGUI extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_botaoCadastrarMouseClicked
+
+    private void botaoRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverMouseClicked
+        new CrudRemoverGUI().setVisible(true);
+    }//GEN-LAST:event_botaoRemoverMouseClicked
 
     /**
      * @param args the command line arguments
@@ -204,6 +251,8 @@ public class CrudGUI extends javax.swing.JFrame {
     private javax.swing.JButton botaoCadastrar;
     private javax.swing.JButton botaoConsultar;
     private javax.swing.JButton botaoRemover;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableClientes;
     // End of variables declaration//GEN-END:variables

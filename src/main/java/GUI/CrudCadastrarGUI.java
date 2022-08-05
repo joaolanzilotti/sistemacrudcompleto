@@ -37,15 +37,26 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
         botaoCadastrar = new javax.swing.JButton();
         botaoVoltar = new javax.swing.JButton();
         caixaNome = new javax.swing.JTextField();
-        caixaTelefone = new javax.swing.JTextField();
         caixaSexo = new javax.swing.JTextField();
         caixaEndereco = new javax.swing.JTextField();
         caixaCidade = new javax.swing.JTextField();
-        caixaCep = new javax.swing.JTextField();
         caixaCpf = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        caixaTelefone = new javax.swing.JFormattedTextField();
+        caixaCep = new javax.swing.JFormattedTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        botaoCadastrar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoCadastrar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         botaoCadastrar.setText("Cadastrar");
         botaoCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -53,6 +64,9 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
             }
         });
 
+        botaoVoltar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoVoltar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoVoltar.setForeground(new java.awt.Color(255, 255, 255));
         botaoVoltar.setText("Voltar");
         botaoVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -60,23 +74,49 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
             }
         });
 
-        caixaNome.setText("Nome");
-
-        caixaTelefone.setText("Telefone");
-
-        caixaSexo.setText("Sexo");
-
-        caixaEndereco.setText("Endereco");
-
-        caixaCidade.setText("Cidade");
-
-        caixaCep.setText("Cep");
-
         try {
             caixaCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel1.setText("Endereco");
+
+        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel2.setText("Sexo");
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel3.setText("Cidade");
+
+        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel4.setText("CPF");
+
+        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel5.setText("Telefone");
+
+        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel6.setText("Nome");
+
+        jLabel7.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel7.setText("Cep");
+
+        try {
+            caixaTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            caixaCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel8.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel8.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("Cadastro de Cliente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,42 +125,72 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(botaoVoltar)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(154, Short.MAX_VALUE)
-                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147))
             .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(caixaCep, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(caixaCidade)
-                    .addComponent(caixaEndereco)
-                    .addComponent(caixaSexo)
-                    .addComponent(caixaTelefone)
-                    .addComponent(caixaNome)
-                    .addComponent(caixaCpf))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(caixaNome)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(67, 67, 67)
+                                    .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(caixaCidade)
+                                    .addComponent(caixaEndereco)
+                                    .addComponent(caixaSexo, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                                    .addComponent(caixaCpf)))
+                            .addComponent(caixaTelefone)
+                            .addComponent(caixaCep)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jLabel8)))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(caixaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(5, 5, 5)
                 .addComponent(caixaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addGap(2, 2, 2)
                 .addComponent(caixaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(5, 5, 5)
                 .addComponent(caixaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(1, 1, 1)
                 .addComponent(caixaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(5, 5, 5)
                 .addComponent(caixaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(caixaCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addGap(20, 20, 20)
                 .addComponent(botaoVoltar))
         );
 
@@ -129,26 +199,38 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarMouseClicked
-        
-        if(caixaNome.getText().equals("") || caixaCpf.getText().equals("") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Campos Obrigatórios!");
-        }
-        else{
-        Cliente cliente = new Cliente(caixaNome.getText(), caixaCpf.getText().replace(".", "").replace("-", ""),caixaTelefone.getText(),caixaSexo.getText(),caixaEndereco.getText(),caixaCidade.getText(),caixaCep.getText());
+       
+        try{
+        Cliente cliente = new Cliente(caixaNome.getText(), caixaCpf.getText().replace(".", "").replace("-", ""),caixaTelefone.getText().replace("(", "").replace(")", "").replace("-", ""),caixaSexo.getText(),caixaEndereco.getText(),caixaCidade.getText(),caixaCep.getText().replace("-", ""));
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
         EntityManager em = emf.createEntityManager();
         
+        
+        
+        List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
+        
+        if(caixaNome.getText().equals("") || caixaCpf.getText().equals("") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Campos Obrigatórios!");
+        }
+        
+        if(!clientes.isEmpty()){JOptionPane.showMessageDialog(null, "CPF Já Cadastrado"); 
+        em.close();
+        }
+        
+        else{
         em.getTransaction().begin();
         em.persist(cliente);
         em.getTransaction().commit();
         JOptionPane.showMessageDialog(null, "Usuário Cadastrado com Sucesso!");
         em.close();
         new CrudGUI().setVisible(true);
-        this.dispose();}
+        this.dispose();
+        }
         
         
-        
+        }
+        catch(Exception e1){JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!");}
         
     }//GEN-LAST:event_botaoCadastrarMouseClicked
 
@@ -195,12 +277,20 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadastrar;
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JTextField caixaCep;
+    private javax.swing.JFormattedTextField caixaCep;
     private javax.swing.JTextField caixaCidade;
     private javax.swing.JFormattedTextField caixaCpf;
     private javax.swing.JTextField caixaEndereco;
     private javax.swing.JTextField caixaNome;
     private javax.swing.JTextField caixaSexo;
-    private javax.swing.JTextField caixaTelefone;
+    private javax.swing.JFormattedTextField caixaTelefone;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }
