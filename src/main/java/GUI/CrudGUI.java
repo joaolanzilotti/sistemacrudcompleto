@@ -110,7 +110,7 @@ public class CrudGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         botaoCadastrar = new javax.swing.JButton();
-        botaoAtualizar = new javax.swing.JButton();
+        botaoEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableClientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -135,10 +135,10 @@ public class CrudGUI extends javax.swing.JFrame {
             }
         });
 
-        botaoAtualizar.setBackground(new java.awt.Color(0, 9, 39));
-        botaoAtualizar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
-        botaoAtualizar.setText("Atualizar");
+        botaoEditar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoEditar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoEditar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoEditar.setText("Editar");
 
         tableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -185,7 +185,7 @@ public class CrudGUI extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Apps-Java-icon.png"))); // NOI18N
 
         refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/seta-re.png"))); // NOI18N
-        refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         refresh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 refreshMouseClicked(evt);
@@ -196,7 +196,7 @@ public class CrudGUI extends javax.swing.JFrame {
         tituloConsulta.setText("Buscar");
 
         botaoLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lupa.png"))); // NOI18N
-        botaoLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoLupa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoLupaMouseClicked(evt);
@@ -207,7 +207,7 @@ public class CrudGUI extends javax.swing.JFrame {
         tituloRemover.setText("Digite o CPF para Remover");
 
         lixeira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lixo.png"))); // NOI18N
-        lixeira.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lixeira.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lixeira.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lixeiraMouseClicked(evt);
@@ -258,7 +258,7 @@ public class CrudGUI extends javax.swing.JFrame {
                                 .addGap(45, 45, 45)
                                 .addComponent(refresh)
                                 .addGap(37, 37, 37)
-                                .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(94, 94, 94))))
         );
         layout.setVerticalGroup(
@@ -266,7 +266,7 @@ public class CrudGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,8 +291,8 @@ public class CrudGUI extends javax.swing.JFrame {
                     .addComponent(botaoCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(refresh)
-                        .addGap(0, 6, Short.MAX_VALUE))
-                    .addComponent(botaoAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
         );
 
@@ -412,8 +412,8 @@ public class CrudGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoAtualizar;
     private javax.swing.JButton botaoCadastrar;
+    private javax.swing.JButton botaoEditar;
     private javax.swing.JLabel botaoLupa;
     private javax.swing.JTextField caixaConsulta;
     private javax.swing.JFormattedTextField caixaRemoverr;

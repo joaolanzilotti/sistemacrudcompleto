@@ -102,7 +102,7 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
         jLabel7.setText("Cep");
 
         try {
-            caixaTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-#####")));
+            caixaTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
