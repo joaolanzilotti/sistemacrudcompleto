@@ -1,4 +1,3 @@
-
 package GUI;
 
 import java.util.List;
@@ -10,42 +9,90 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 
-
 public class CrudGUI extends javax.swing.JFrame {
-
-    public void tabelaGUI(){
+    
+    public void buscaTabela(String strParametroDeBusca) {
         
-    try{
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
-        EntityManager em = emf.createEntityManager();
-        
-        
-        List<Cliente> clientes = em.createQuery("select c from Cliente c ", Cliente.class).getResultList();
-        
-        DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
-        model.setNumRows(0);
-        
-        for(Cliente cliente1 : clientes){
-        
-            Object[] linhasLista = {
+        try {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
+            EntityManager em = emf.createEntityManager();
             
-                cliente1.getId(),
-                cliente1.getNome(),
-                cliente1.getCpf(),
-                cliente1.getTelefone(),
-                cliente1.getSexo(),
-                cliente1.getEndereco(),
-                cliente1.getCidade(),
-                cliente1.getCep()};
-            model.addRow(linhasLista);
-            tableClientes.setModel(model);
+            List<Cliente> clientes = em.createQuery("select c from Cliente c WHERE c.nome = :strParametroDeBusca or c.cpf = :strParametroDeBusca or c.telefone = :strParametroDeBusca or c.sexo = :strParametroDeBusca or c.endereco = :strParametroDeBusca or c.cidade = :strParametroDeBusca or c.cep = :strParametroDeBusca",
+                    Cliente.class)
+                    .setParameter("strParametroDeBusca", strParametroDeBusca)
+                    .getResultList();
             
+            DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
+            model.setNumRows(0);
+            
+            if (!clientes.isEmpty()) {
+                for (Cliente cliente1 : clientes) {
+                    
+                    Object[] linhasLista = {
+                        cliente1.getNome(),
+                        cliente1.getCpf(),
+                        cliente1.getTelefone(),
+                        cliente1.getSexo(),
+                        cliente1.getEndereco(),
+                        cliente1.getCidade(),
+                        cliente1.getCep()};
+                    model.addRow(linhasLista);
+                    tableClientes.setModel(model);
+                    
+                }
+            } else {
+                Object[] linhasLista = {
+                    "",
+                    "NADA ENCONTRADO",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",};
+                model.addRow(linhasLista);
+                tableClientes.setModel(model);
+            }
+            
+            caixaConsulta.setText("");
+            
+        } catch (Exception e1) {
+            System.out.println(e1);
         }
         
     }
-    catch(Exception e1){JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!");}
+    
+    public void tabelaGUI() {
+        
+        try {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
+            EntityManager em = emf.createEntityManager();
+            
+            List<Cliente> clientes = em.createQuery("select c from Cliente c ", Cliente.class).getResultList();
+            
+            DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
+            model.setNumRows(0);
+            
+            for (Cliente cliente1 : clientes) {
+                
+                Object[] linhasLista = {
+                    
+                    cliente1.getNome(),
+                    cliente1.getCpf(),
+                    cliente1.getTelefone(),
+                    cliente1.getSexo(),
+                    cliente1.getEndereco(),
+                    cliente1.getCidade(),
+                    cliente1.getCep()};
+                model.addRow(linhasLista);
+                tableClientes.setModel(model);
+                
+            }
+            
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!");
+        }
     }
-
     
     public CrudGUI() {
         initComponents();
@@ -63,13 +110,18 @@ public class CrudGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         botaoCadastrar = new javax.swing.JButton();
-        botaoRemover = new javax.swing.JButton();
         botaoAtualizar = new javax.swing.JButton();
-        botaoConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableClientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        refresh = new javax.swing.JLabel();
+        tituloConsulta = new javax.swing.JLabel();
+        caixaConsulta = new javax.swing.JTextField();
+        botaoLupa = new javax.swing.JLabel();
+        tituloRemover = new javax.swing.JLabel();
+        lixeira = new javax.swing.JLabel();
+        caixaRemoverr = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,39 +135,24 @@ public class CrudGUI extends javax.swing.JFrame {
             }
         });
 
-        botaoRemover.setBackground(new java.awt.Color(0, 9, 39));
-        botaoRemover.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        botaoRemover.setForeground(new java.awt.Color(255, 255, 255));
-        botaoRemover.setText("Remover");
-        botaoRemover.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoRemoverMouseClicked(evt);
-            }
-        });
-
         botaoAtualizar.setBackground(new java.awt.Color(0, 9, 39));
         botaoAtualizar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAtualizar.setText("Atualizar");
-
-        botaoConsultar.setBackground(new java.awt.Color(0, 9, 39));
-        botaoConsultar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        botaoConsultar.setForeground(new java.awt.Color(255, 255, 255));
-        botaoConsultar.setText("Consultar");
 
         tableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NOME", "CPF", "TELEFONE", "SEXO", "ENDERECO", "CIDADE", "CEP"
+                "NOME", "CPF", "TELEFONE", "SEXO", "ENDERECO", "CIDADE", "CEP"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,72 +165,134 @@ public class CrudGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableClientes);
         if (tableClientes.getColumnModel().getColumnCount() > 0) {
-            tableClientes.getColumnModel().getColumn(0).setMinWidth(30);
-            tableClientes.getColumnModel().getColumn(0).setPreferredWidth(10);
-            tableClientes.getColumnModel().getColumn(0).setMaxWidth(50);
-            tableClientes.getColumnModel().getColumn(2).setMinWidth(90);
-            tableClientes.getColumnModel().getColumn(2).setMaxWidth(90);
+            tableClientes.getColumnModel().getColumn(1).setMinWidth(90);
+            tableClientes.getColumnModel().getColumn(1).setMaxWidth(90);
+            tableClientes.getColumnModel().getColumn(2).setMinWidth(100);
+            tableClientes.getColumnModel().getColumn(2).setMaxWidth(100);
             tableClientes.getColumnModel().getColumn(3).setMinWidth(100);
             tableClientes.getColumnModel().getColumn(3).setMaxWidth(100);
-            tableClientes.getColumnModel().getColumn(4).setMinWidth(100);
-            tableClientes.getColumnModel().getColumn(4).setMaxWidth(100);
-            tableClientes.getColumnModel().getColumn(6).setMinWidth(80);
-            tableClientes.getColumnModel().getColumn(6).setMaxWidth(85);
-            tableClientes.getColumnModel().getColumn(7).setMinWidth(90);
-            tableClientes.getColumnModel().getColumn(7).setMaxWidth(90);
+            tableClientes.getColumnModel().getColumn(5).setMinWidth(80);
+            tableClientes.getColumnModel().getColumn(5).setMaxWidth(85);
+            tableClientes.getColumnModel().getColumn(6).setMinWidth(90);
+            tableClientes.getColumnModel().getColumn(6).setMaxWidth(90);
         }
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("                   CRUD");
+        jLabel1.setText("CRUD");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Apps-Java-icon.png"))); // NOI18N
+
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/seta-re.png"))); // NOI18N
+        refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshMouseClicked(evt);
+            }
+        });
+
+        tituloConsulta.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloConsulta.setText("Buscar");
+
+        botaoLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lupa.png"))); // NOI18N
+        botaoLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoLupa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoLupaMouseClicked(evt);
+            }
+        });
+
+        tituloRemover.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloRemover.setText("Digite o CPF para Remover");
+
+        lixeira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lixo.png"))); // NOI18N
+        lixeira.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lixeira.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lixeiraMouseClicked(evt);
+            }
+        });
+
+        try {
+            caixaRemoverr.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(475, 475, 475)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(13, 13, 13)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tituloConsulta)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(caixaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botaoLupa)))
+                        .addGap(194, 194, 194)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(caixaRemoverr, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tituloRemover))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lixeira)
+                        .addGap(194, 194, 194))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(226, 226, 226)
                                 .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(botaoRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(botaoConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(112, 112, 112)))
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(249, 249, 249))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(464, 464, 464))))
+                                .addGap(45, 45, 45)
+                                .addComponent(refresh)
+                                .addGap(37, 37, 37)
+                                .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(94, 94, 94))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tituloRemover)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lixeira)
+                            .addComponent(caixaRemoverr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botaoLupa)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tituloConsulta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(caixaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)))
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(botaoRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(refresh)
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(botaoAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
         );
 
@@ -206,10 +305,76 @@ public class CrudGUI extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_botaoCadastrarMouseClicked
+    
+    public CrudGUI(JTable tableClientes) {
+        this.tableClientes = tableClientes;
+    }
 
-    private void botaoRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverMouseClicked
-        new CrudRemoverGUI().setVisible(true);
-    }//GEN-LAST:event_botaoRemoverMouseClicked
+    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
+        
+        tabelaGUI();
+    }//GEN-LAST:event_refreshMouseClicked
+
+    private void botaoLupaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLupaMouseClicked
+        
+        buscaTabela(caixaConsulta.getText());
+
+//        Cliente cliente = new Cliente(caixaConsulta.getText());
+//
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
+//        EntityManager em = emf.createEntityManager();
+//
+//        List<Cliente> consulta = em.createQuery("select c from Cliente c where c.nome=:nomeForm and c.cpf=:cpfForm and c.telefone=:telefoneForm and c.sexo=:sexoForm and c.endereco=:enderecoForm and c.cidade=:cidadeForm and c.cep=:cepForm", Cliente.class)
+//                .setParameter("nomeForm", cliente.getNome())
+//                .setParameter("cpfForm", cliente.getCpf())
+//                .setParameter("telefoneForm", cliente.getTelefone())
+//                .setParameter("sexoForm", cliente.getSexo())
+//                .setParameter("enderecoForm", cliente.getEndereco())
+//                .setParameter("cidadeForm", cliente.getCidade())
+//                .setParameter("cepForm", cliente.getCep())
+//                .getResultList();
+//        System.out.println(consulta);
+
+    }//GEN-LAST:event_botaoLupaMouseClicked
+
+    private void lixeiraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lixeiraMouseClicked
+        
+        int isValido = JOptionPane.showConfirmDialog(null, "Tem Certeza que deseja remover este usuário?");
+        
+        if (0 == isValido) {
+            
+            Cliente clientes = new Cliente(caixaRemoverr.getText().replace(".", "").replace("-", ""));
+            
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
+            EntityManager em = emf.createEntityManager();
+            
+            List<Cliente> cliente = em.createQuery("select c from Cliente c where c.cpf=:cpfForm ", Cliente.class).setParameter("cpfForm", clientes.getCpf()).getResultList();
+            
+            System.out.println(cliente);
+            if (cliente.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");
+            } else if (!cliente.isEmpty()) {
+                em.getTransaction().begin();
+                
+                em.remove(cliente.get(0));
+                
+                em.getTransaction().commit();
+                em.close();
+                tabelaGUI();
+                JOptionPane.showMessageDialog(null, "Cliente Removido Com Sucesso!");
+                
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Não é possível");
+                
+            }
+            
+        }
+        
+        tabelaGUI();
+        caixaRemoverr.setText("");
+
+    }//GEN-LAST:event_lixeiraMouseClicked
 
     /**
      * @param args the command line arguments
@@ -249,11 +414,16 @@ public class CrudGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAtualizar;
     private javax.swing.JButton botaoCadastrar;
-    private javax.swing.JButton botaoConsultar;
-    private javax.swing.JButton botaoRemover;
+    private javax.swing.JLabel botaoLupa;
+    private javax.swing.JTextField caixaConsulta;
+    private javax.swing.JFormattedTextField caixaRemoverr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lixeira;
+    private javax.swing.JLabel refresh;
     private javax.swing.JTable tableClientes;
+    private javax.swing.JLabel tituloConsulta;
+    private javax.swing.JLabel tituloRemover;
     // End of variables declaration//GEN-END:variables
 }

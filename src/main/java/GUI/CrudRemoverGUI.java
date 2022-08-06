@@ -17,6 +17,8 @@ import modelo.Cliente;
  */
 public class CrudRemoverGUI extends javax.swing.JFrame {
 
+    private List<Cliente> clientes;
+
     /**
      * Creates new form CrudRemoverGUI
      */
@@ -66,7 +68,7 @@ public class CrudRemoverGUI extends javax.swing.JFrame {
         jLabel1.setText("Remover Cliente");
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jLabel2.setText("Numero do ID ou CPF do Cliente");
+        jLabel2.setText("CPF do Cliente Para Remover");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,7 +107,8 @@ public class CrudRemoverGUI extends javax.swing.JFrame {
                 .addComponent(botaoVoltar))
         );
 
-        setBounds(650, 25, 558, 362);
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVoltarMouseClicked
@@ -115,17 +118,22 @@ public class CrudRemoverGUI extends javax.swing.JFrame {
 
     private void botaoRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoRemoverMouseClicked
     
-        Cliente cliente = new Cliente(caixarRemover.getText());
+        
+        Cliente clientes = new Cliente(caixarRemover.getText());
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
         EntityManager em = emf.createEntityManager();
         
-        List<Cliente> removerC = em.createQuery("select c from Cliente c where c.cpf=:cpfForm ", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
+        List<Cliente> cliente = em.createQuery("select c from Cliente c where c.cpf=:cpfForm ", Cliente.class).setParameter("cpfForm", clientes.getCpf()).getResultList();
         
-        if(removerC.isEmpty()){JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");}
-        else{
+        System.out.println(cliente);
+        if(cliente.isEmpty()){JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");}
+        
+        else if(!cliente.isEmpty()){
         em.getTransaction().begin();
-        em.remove("");
+        
+        em.remove(cliente.get(0));
+        
         em.getTransaction().commit();
         JOptionPane.showMessageDialog(null, "Cliente Removido Com Sucesso!");
         new CrudGUI().setVisible(true);

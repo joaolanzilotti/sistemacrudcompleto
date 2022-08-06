@@ -214,7 +214,7 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campos Obrigatórios!");
         }
         
-        if(!clientes.isEmpty()){JOptionPane.showMessageDialog(null, "CPF Já Cadastrado"); 
+        else if(!clientes.isEmpty()){JOptionPane.showMessageDialog(null, "CPF Já Cadastrado"); 
         em.close();
         }
         
