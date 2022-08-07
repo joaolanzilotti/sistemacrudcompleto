@@ -144,6 +144,10 @@ public class CrudGUI extends javax.swing.JFrame {
             }
         });
 
+        tableClientes.setBackground(new java.awt.Color(102, 102, 102));
+        tableClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tableClientes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        tableClientes.setForeground(new java.awt.Color(255, 255, 255));
         tableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -223,6 +227,7 @@ public class CrudGUI extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        caixaRemoverr.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

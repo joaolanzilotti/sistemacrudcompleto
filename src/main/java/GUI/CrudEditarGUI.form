@@ -26,9 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="0" pref="165" max="32767" attributes="0"/>
               <Component id="telaEditar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="botaoProcurar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="84" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="165" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,12 +35,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
               <Component id="telaEditar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-              <Component id="botaoProcurar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,55 +46,53 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="241" max="32767" attributes="0"/>
-                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="217" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="caixaCpf" min="-2" pref="223" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="botaoProcurar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="tituloCpf" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="botaoEditar" min="-2" pref="204" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="tituloCpf" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="caixaCPF" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="botaoVoltar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="botaoVoltar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
-                                      <Component id="botaoEditar" min="-2" pref="204" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tituloCep" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tituloTelefone" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tituloCidade" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tituloSexo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tituloEndereco" min="-2" max="-2" attributes="0"/>
-                                  <Component id="caixaNome" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="caixaTelefone" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="caixaCep" max="32767" attributes="0"/>
-                                  <Component id="caixaSexo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="caixaEndereco" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="caixaCidade" min="-2" pref="538" max="-2" attributes="0"/>
-                                  <Component id="tituloNome" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace pref="91" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tituloCep" min="-2" max="-2" attributes="0"/>
+                          <Component id="tituloTelefone" min="-2" max="-2" attributes="0"/>
+                          <Component id="tituloCidade" min="-2" max="-2" attributes="0"/>
+                          <Component id="tituloSexo" min="-2" max="-2" attributes="0"/>
+                          <Component id="tituloEndereco" min="-2" max="-2" attributes="0"/>
+                          <Component id="caixaNome" alignment="0" max="32767" attributes="0"/>
+                          <Component id="caixaTelefone" alignment="0" max="32767" attributes="0"/>
+                          <Component id="caixaCep" max="32767" attributes="0"/>
+                          <Component id="caixaSexo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="caixaEndereco" alignment="0" max="32767" attributes="0"/>
+                          <Component id="caixaCidade" min="-2" pref="538" max="-2" attributes="0"/>
+                          <Component id="tituloNome" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -114,8 +105,14 @@
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="tituloCpf" min="-2" pref="20" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="caixaCPF" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="450" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="caixaCpf" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="botaoProcurar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="362" max="-2" attributes="0"/>
+                  <Component id="botaoEditar" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="botaoVoltar" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -143,22 +140,19 @@
                       <Component id="tituloCep" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="caixaCep" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="botaoEditar" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="botaoVoltar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JFormattedTextField" name="caixaCPF">
+        <Component class="javax.swing.JFormattedTextField" name="caixaCpf">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="###.###.###-##" subtype="-1" type="5"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="tituloCpf">
@@ -287,15 +281,24 @@
             <Property name="text" type="java.lang.String" value="Editar Cliente"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="botaoProcurar">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="27" green="9" red="0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Black" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Procurar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoProcurarMouseClicked"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="botaoProcurar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Procurar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoProcurarMouseClicked"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>

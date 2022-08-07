@@ -23,8 +23,8 @@ public class CrudEditarGUI extends javax.swing.JFrame {
      * Creates new form CrudCadastrarGUI
      */
     public CrudEditarGUI() {
-          initComponents();
-          
+        initComponents();
+
 //        botaoEditar.setVisible(false);
 //        caixaNome.setVisible(false);
 //        tituloNome.setVisible(false);
@@ -50,7 +50,7 @@ public class CrudEditarGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         telaEditar = new javax.swing.JPanel();
-        caixaCPF = new javax.swing.JFormattedTextField();
+        caixaCpf = new javax.swing.JFormattedTextField();
         tituloCpf = new javax.swing.JLabel();
         botaoEditar = new javax.swing.JButton();
         botaoVoltar = new javax.swing.JButton();
@@ -72,10 +72,11 @@ public class CrudEditarGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         try {
-            caixaCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            caixaCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        caixaCpf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         tituloCpf.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         tituloCpf.setText("Digite o CPF do Cliente Para Editá-lo");
@@ -135,49 +136,58 @@ public class CrudEditarGUI extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Editar Cliente");
 
+        botaoProcurar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoProcurar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoProcurar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoProcurar.setText("Procurar");
+        botaoProcurar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoProcurarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout telaEditarLayout = new javax.swing.GroupLayout(telaEditar);
         telaEditar.setLayout(telaEditarLayout);
         telaEditarLayout.setHorizontalGroup(
             telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
-                .addContainerGap(241, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(199, 199, 199))
             .addGroup(telaEditarLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
+                .addContainerGap(217, Short.MAX_VALUE)
                 .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(telaEditarLayout.createSequentialGroup()
-                        .addComponent(tituloCpf)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(caixaCPF))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(199, 199, 199))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(telaEditarLayout.createSequentialGroup()
+                            .addComponent(caixaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(botaoProcurar)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
+                            .addComponent(tituloCpf)
+                            .addGap(140, 140, 140)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
+                        .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180))))
+            .addGroup(telaEditarLayout.createSequentialGroup()
+                .addComponent(botaoVoltar)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(telaEditarLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(telaEditarLayout.createSequentialGroup()
-                            .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(botaoVoltar)
-                                .addGroup(telaEditarLayout.createSequentialGroup()
-                                    .addGap(220, 220, 220)
-                                    .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(205, 205, 205))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tituloCep)
-                                .addComponent(tituloTelefone)
-                                .addComponent(tituloCidade)
-                                .addComponent(tituloSexo)
-                                .addComponent(tituloEndereco)
-                                .addComponent(caixaNome)
-                                .addComponent(caixaTelefone)
-                                .addComponent(caixaCep)
-                                .addComponent(caixaSexo)
-                                .addComponent(caixaEndereco)
-                                .addComponent(caixaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tituloNome))
-                            .addGap(6, 6, 6)))))
+                    .addContainerGap(91, Short.MAX_VALUE)
+                    .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tituloCep)
+                        .addComponent(tituloTelefone)
+                        .addComponent(tituloCidade)
+                        .addComponent(tituloSexo)
+                        .addComponent(tituloEndereco)
+                        .addComponent(caixaNome)
+                        .addComponent(caixaTelefone)
+                        .addComponent(caixaCep)
+                        .addComponent(caixaSexo)
+                        .addComponent(caixaEndereco)
+                        .addComponent(caixaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tituloNome))
+                    .addGap(6, 6, 6)))
         );
         telaEditarLayout.setVerticalGroup(
             telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,8 +197,13 @@ public class CrudEditarGUI extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(tituloCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(caixaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(450, 450, 450))
+                .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(caixaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoProcurar))
+                .addGap(362, 362, 362)
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(botaoVoltar))
             .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(telaEditarLayout.createSequentialGroup()
                     .addContainerGap(139, Short.MAX_VALUE)
@@ -215,19 +230,8 @@ public class CrudEditarGUI extends javax.swing.JFrame {
                     .addComponent(tituloCep)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(caixaCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(34, 34, 34)
-                    .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(20, 20, 20)
-                    .addComponent(botaoVoltar)
-                    .addContainerGap()))
+                    .addGap(119, 119, 119)))
         );
-
-        botaoProcurar.setText("Procurar");
-        botaoProcurar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoProcurarMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,20 +240,14 @@ public class CrudEditarGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 165, Short.MAX_VALUE)
                 .addComponent(telaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoProcurar)
-                .addGap(0, 84, Short.MAX_VALUE))
+                .addGap(0, 165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 27, Short.MAX_VALUE)
                 .addComponent(telaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 27, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(botaoProcurar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
 
         pack();
@@ -257,39 +255,49 @@ public class CrudEditarGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoEditarMouseClicked
-       
-        
-        
-        try{
-        Cliente cliente = new Cliente(caixaNome.getText(), caixaCPF.getText().replace(".", "").replace("-", ""),caixaTelefone.getText().replace("(", "").replace(")", "").replace("-", ""),caixaSexo.getText(),caixaEndereco.getText(),caixaCidade.getText(),caixaCep.getText().replace("-", ""));
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
-        EntityManager em = emf.createEntityManager();
 
-        
-        List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
-        
+        try {
+            Cliente cliente = new Cliente(caixaNome.getText(), caixaCpf.getText().replace(".", "").replace("-", ""), caixaTelefone.getText().replace("(", "").replace(")", "").replace("-", ""), caixaSexo.getText(), caixaEndereco.getText(), caixaCidade.getText(), caixaCep.getText().replace("-", ""));
 
-        
-        if(caixaNome.getText().equals("") || caixaCPF.getText().equals("   .   .   -  ") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Campos Obrigatórios!");
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
+            EntityManager em = emf.createEntityManager();
+
+            List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
+
+            if (caixaNome.getText().equals("") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Campos Obrigatórios!");
+            }
+            else if (caixaCpf.getText().equals("   .   .   -  ")) {
+                JOptionPane.showMessageDialog(null, "CPF Não Digitado");
+            } else if (clientes.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");
+            } else {
+
+                for (Cliente cliente1 : clientes) {
+
+                    em.getTransaction().begin();
+
+                    cliente1.setNome(caixaNome.getText());
+                    cliente1.setTelefone(caixaTelefone.getText().replace("(", "").replace(")", "").replace("-", ""));
+                    cliente1.setSexo(caixaSexo.getText());
+                    cliente1.setEndereco(caixaEndereco.getText());
+                    cliente1.setCidade(caixaCidade.getText());
+                    cliente1.setCep(caixaCep.getText().replace("-", ""));
+
+                    em.getTransaction().commit();
+
+                }
+
+                JOptionPane.showMessageDialog(null, "Dados Alterado Com Sucesso!");
+                em.close();
+                new CrudGUI().setVisible(true);
+                this.dispose();
+            }
+
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, e1);
         }
-        
-        
-        else{
-        em.getTransaction().begin();
-        em.persist(cliente);
-        em.getTransaction().commit();
-        JOptionPane.showMessageDialog(null, "Usuário Cadastrado com Sucesso!");
-        em.close();
-        new CrudGUI().setVisible(true);
-        this.dispose();
-        }
-        
-        
-        }
-        catch(Exception e1){JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!");}
-        
+
     }//GEN-LAST:event_botaoEditarMouseClicked
 
     private void botaoVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoVoltarMouseClicked
@@ -298,28 +306,35 @@ public class CrudEditarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarMouseClicked
 
     private void botaoProcurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoProcurarMouseClicked
-        
-        Cliente cliente = new Cliente(caixaCPF.getText());
-        
+
+        Cliente cliente = new Cliente(caixaCpf.getText().replace(".", "").replace("-", ""));
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
         EntityManager em = emf.createEntityManager();
-       
-        List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
-        
-        for (Cliente cliente1 : clientes) {
 
-        if(!clientes.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Cliente Encontrado!");
-            caixaNome.setText(cliente1.getNome());
-            caixaTelefone.setText(cliente1.getTelefone());
-            caixaSexo.setText(cliente1.getSexo());
-            caixaEndereco.setText(cliente1.getEndereco());
-            caixaCidade.setText(cliente1.getCidade());
-            caixaCep.setText(cliente1.getCep());}
+        List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
+
+        System.out.println(clientes);
+
+        if (caixaCpf.getText().equals("   .   .   -  ")) {
+            JOptionPane.showMessageDialog(null, "CPF Não Digitado");
+        } else if (clientes.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");
+        } else {
+
+            for (Cliente cliente1 : clientes) {
+
+                JOptionPane.showMessageDialog(null, "Cliente Encontrado!");
+                caixaNome.setText(cliente1.getNome());
+                caixaTelefone.setText(cliente1.getTelefone());
+                caixaSexo.setText(cliente1.getSexo());
+                caixaEndereco.setText(cliente1.getEndereco());
+                caixaCidade.setText(cliente1.getCidade());
+                caixaCep.setText(cliente1.getCep());
+            }
+
         }
-        
-        
-        
+
     }//GEN-LAST:event_botaoProcurarMouseClicked
 
     /**
@@ -364,9 +379,9 @@ public class CrudEditarGUI extends javax.swing.JFrame {
     private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoProcurar;
     private javax.swing.JButton botaoVoltar;
-    private javax.swing.JFormattedTextField caixaCPF;
     private javax.swing.JFormattedTextField caixaCep;
     private javax.swing.JTextField caixaCidade;
+    private javax.swing.JFormattedTextField caixaCpf;
     private javax.swing.JTextField caixaEndereco;
     private javax.swing.JTextField caixaNome;
     private javax.swing.JTextField caixaSexo;
