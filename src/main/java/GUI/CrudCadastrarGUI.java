@@ -210,7 +210,7 @@ public class CrudCadastrarGUI extends javax.swing.JFrame {
         
         List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
         
-        if(caixaNome.getText().equals("") || caixaCpf.getText().equals("") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")){
+        if(caixaNome.getText().equals("") || caixaCpf.getText().equals("   .   .   -  ") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Campos Obrigatórios!");
         }
         

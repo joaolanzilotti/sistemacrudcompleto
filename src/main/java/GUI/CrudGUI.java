@@ -10,24 +10,24 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 
 public class CrudGUI extends javax.swing.JFrame {
-    
+
     public void buscaTabela(String strParametroDeBusca) {
-        
+
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
             EntityManager em = emf.createEntityManager();
-            
+
             List<Cliente> clientes = em.createQuery("select c from Cliente c WHERE c.nome = :strParametroDeBusca or c.cpf = :strParametroDeBusca or c.telefone = :strParametroDeBusca or c.sexo = :strParametroDeBusca or c.endereco = :strParametroDeBusca or c.cidade = :strParametroDeBusca or c.cep = :strParametroDeBusca",
                     Cliente.class)
                     .setParameter("strParametroDeBusca", strParametroDeBusca)
                     .getResultList();
-            
+
             DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
             model.setNumRows(0);
-            
+
             if (!clientes.isEmpty()) {
                 for (Cliente cliente1 : clientes) {
-                    
+
                     Object[] linhasLista = {
                         cliente1.getNome(),
                         cliente1.getCpf(),
@@ -38,7 +38,7 @@ public class CrudGUI extends javax.swing.JFrame {
                         cliente1.getCep()};
                     model.addRow(linhasLista);
                     tableClientes.setModel(model);
-                    
+
                 }
             } else {
                 Object[] linhasLista = {
@@ -53,30 +53,29 @@ public class CrudGUI extends javax.swing.JFrame {
                 model.addRow(linhasLista);
                 tableClientes.setModel(model);
             }
-            
+
             caixaConsulta.setText("");
-            
+
         } catch (Exception e1) {
             System.out.println(e1);
         }
-        
+
     }
-    
+
     public void tabelaGUI() {
-        
+
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
             EntityManager em = emf.createEntityManager();
-            
+
             List<Cliente> clientes = em.createQuery("select c from Cliente c ", Cliente.class).getResultList();
-            
+
             DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
             model.setNumRows(0);
-            
+
             for (Cliente cliente1 : clientes) {
-                
+
                 Object[] linhasLista = {
-                    
                     cliente1.getNome(),
                     cliente1.getCpf(),
                     cliente1.getTelefone(),
@@ -86,17 +85,17 @@ public class CrudGUI extends javax.swing.JFrame {
                     cliente1.getCep()};
                 model.addRow(linhasLista);
                 tableClientes.setModel(model);
-                
+
             }
-            
+
         } catch (Exception e1) {
             JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!");
         }
     }
-    
+
     public CrudGUI() {
         initComponents();
-        
+
         tabelaGUI();
     }
 
@@ -139,6 +138,11 @@ public class CrudGUI extends javax.swing.JFrame {
         botaoEditar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         botaoEditar.setForeground(new java.awt.Color(255, 255, 255));
         botaoEditar.setText("Editar");
+        botaoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoEditarMouseClicked(evt);
+            }
+        });
 
         tableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -305,18 +309,18 @@ public class CrudGUI extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_botaoCadastrarMouseClicked
-    
+
     public CrudGUI(JTable tableClientes) {
         this.tableClientes = tableClientes;
     }
 
     private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
-        
+
         tabelaGUI();
     }//GEN-LAST:event_refreshMouseClicked
 
     private void botaoLupaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLupaMouseClicked
-        
+
         buscaTabela(caixaConsulta.getText());
 
 //        Cliente cliente = new Cliente(caixaConsulta.getText());
@@ -338,43 +342,49 @@ public class CrudGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoLupaMouseClicked
 
     private void lixeiraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lixeiraMouseClicked
-        
+
         int isValido = JOptionPane.showConfirmDialog(null, "Tem Certeza que deseja remover este usuário?");
-        
+
         if (0 == isValido) {
-            
+
             Cliente clientes = new Cliente(caixaRemoverr.getText().replace(".", "").replace("-", ""));
-            
+
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
             EntityManager em = emf.createEntityManager();
-            
+
             List<Cliente> cliente = em.createQuery("select c from Cliente c where c.cpf=:cpfForm ", Cliente.class).setParameter("cpfForm", clientes.getCpf()).getResultList();
-            
+
             System.out.println(cliente);
             if (cliente.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");
             } else if (!cliente.isEmpty()) {
                 em.getTransaction().begin();
-                
+
                 em.remove(cliente.get(0));
-                
+
                 em.getTransaction().commit();
                 em.close();
                 tabelaGUI();
                 JOptionPane.showMessageDialog(null, "Cliente Removido Com Sucesso!");
-                
+
             } else {
-                
+
                 JOptionPane.showMessageDialog(null, "Não é possível");
-                
+
             }
-            
+
         }
-        
+
         tabelaGUI();
         caixaRemoverr.setText("");
 
     }//GEN-LAST:event_lixeiraMouseClicked
+
+    private void botaoEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoEditarMouseClicked
+        new CrudEditarGUI().setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_botaoEditarMouseClicked
 
     /**
      * @param args the command line arguments
