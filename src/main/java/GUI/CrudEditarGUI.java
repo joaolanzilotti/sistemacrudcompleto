@@ -9,9 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
-import modelo.Cliente_;
 
 /**
  *
@@ -22,24 +20,25 @@ public class CrudEditarGUI extends javax.swing.JFrame {
     /**
      * Creates new form CrudCadastrarGUI
      */
+    private Cliente cliente;
+
+    public CrudEditarGUI(Cliente cliente) {
+        initComponents();
+
+        this.cliente = cliente;
+        caixaCidade.setText(cliente.getCidade());;
+        caixaCep.setText(cliente.getCep());
+        caixaCpf.setText(cliente.getCpf());
+        caixaEndereco.setText(cliente.getEndereco());
+        caixaNome.setText(cliente.getNome());
+        caixaSexo.setText(cliente.getSexo());
+        caixaTelefone.setText(cliente.getTelefone());
+
+        botaoEditar.setVisible(true);
+    }
+
     public CrudEditarGUI() {
         initComponents();
-        
-        botaoEditar.setVisible(false);
-
-//        botaoEditar.setVisible(false);
-//        caixaNome.setVisible(false);
-//        tituloNome.setVisible(false);
-//        caixaTelefone.setVisible(false);
-//        tituloTelefone.setVisible(false);
-//        caixaSexo.setVisible(false);
-//        tituloSexo.setVisible(false);
-//        caixaEndereco.setVisible(false);
-//        tituloEndereco.setVisible(false);
-//        caixaCidade.setVisible(false);
-//        tituloCidade.setVisible(false);
-//        caixaCep.setVisible(false);
-//        tituloCep.setVisible(false);
     }
 
     /**
@@ -288,12 +287,11 @@ public class CrudEditarGUI extends javax.swing.JFrame {
             List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
 
             if (caixaNome.getText().equals("") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Campos Obrigatórios!","AVISO",HEIGHT);
-            }
-            else if (caixaCpf.getText().equals("   .   .   -  ")) {
-                JOptionPane.showMessageDialog(null, "CPF Não Digitado","AVISO",HEIGHT);
+                JOptionPane.showMessageDialog(null, "Campos Obrigatórios!", "AVISO", HEIGHT);
+            } else if (caixaCpf.getText().equals("   .   .   -  ")) {
+                JOptionPane.showMessageDialog(null, "CPF Não Digitado", "AVISO", HEIGHT);
             } else if (clientes.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!","AVISO",HEIGHT);
+                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!", "AVISO", HEIGHT);
             } else {
 
                 for (Cliente cliente1 : clientes) {
@@ -311,14 +309,14 @@ public class CrudEditarGUI extends javax.swing.JFrame {
 
                 }
 
-                JOptionPane.showMessageDialog(null, "Dados Alterado Com Sucesso!","AVISO",WIDTH);
+                JOptionPane.showMessageDialog(null, "Dados Alterado Com Sucesso!", "AVISO", WIDTH);
                 em.close();
                 new CrudGUI().setVisible(true);
                 this.dispose();
             }
 
         } catch (Exception e1) {
-            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!", "AVISO", HEIGHT);
         }
 
     }//GEN-LAST:event_botaoEditarMouseClicked
@@ -329,38 +327,38 @@ public class CrudEditarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarMouseClicked
 
     private void botaoProcurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoProcurarMouseClicked
-        
-        try{
-        Cliente cliente = new Cliente(caixaCpf.getText().replace(".", "").replace("-", ""));
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
-        EntityManager em = emf.createEntityManager();
+        try {
+            Cliente cliente = new Cliente(caixaCpf.getText().replace(".", "").replace("-", ""));
 
-        List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
+            EntityManager em = emf.createEntityManager();
 
-        System.out.println(clientes);
+            List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
 
-        if (caixaCpf.getText().equals("   .   .   -  ")) {
-            JOptionPane.showMessageDialog(null, "CPF Não Digitado","AVISO",HEIGHT);
-        } else if (clientes.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!","AVISO",HEIGHT);
-        } else {
+            System.out.println(clientes);
 
-            for (Cliente cliente1 : clientes) {
+            if (caixaCpf.getText().equals("   .   .   -  ")) {
+                JOptionPane.showMessageDialog(null, "CPF Não Digitado", "AVISO", HEIGHT);
+            } else if (clientes.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!", "AVISO", HEIGHT);
+            } else {
 
-                JOptionPane.showMessageDialog(null, "Cliente Encontrado!","AVISO",WIDTH);
-                botaoEditar.setVisible(true);
-                caixaNome.setText(cliente1.getNome());
-                caixaTelefone.setText(cliente1.getTelefone());
-                caixaSexo.setText(cliente1.getSexo());
-                caixaEndereco.setText(cliente1.getEndereco());
-                caixaCidade.setText(cliente1.getCidade());
-                caixaCep.setText(cliente1.getCep());
+                for (Cliente cliente1 : clientes) {
+
+                    JOptionPane.showMessageDialog(null, "Cliente Encontrado!", "AVISO", WIDTH);
+                    botaoEditar.setVisible(true);
+                    caixaNome.setText(cliente1.getNome());
+                    caixaTelefone.setText(cliente1.getTelefone());
+                    caixaSexo.setText(cliente1.getSexo());
+                    caixaEndereco.setText(cliente1.getEndereco());
+                    caixaCidade.setText(cliente1.getCidade());
+                    caixaCep.setText(cliente1.getCep());
+                }
+
             }
-
-        }
-        }catch (Exception e1) {
-            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!", "AVISO", HEIGHT);
         }
     }//GEN-LAST:event_botaoProcurarMouseClicked
 

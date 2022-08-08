@@ -1,5 +1,6 @@
 package GUI;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,15 +12,35 @@ import modelo.Cliente;
 
 public class CrudGUI extends javax.swing.JFrame {
 
-    public void buscaTabela(String strParametroDeBusca) {
+    private List<Cliente> temporario = new ArrayList<>();
+
+    public void contadorClientes() {
 
         try {
-            
-            
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
             EntityManager em = emf.createEntityManager();
 
-            List<Cliente> clientes = em.createQuery("select c from Cliente c WHERE c.nome = :strParametroDeBusca or c.cpf = :strParametroDeBusca or c.telefone = :strParametroDeBusca or c.sexo = :strParametroDeBusca or c.endereco = :strParametroDeBusca or c.cidade = :strParametroDeBusca or c.cep = :strParametroDeBusca",
+            List<Cliente> clientes = em.createQuery("select c from Cliente c ", Cliente.class).getResultList();
+
+            int totalClientes = clientes.size();
+            String totalClientesInt = String.valueOf(totalClientes);
+
+            System.out.println("Total: " + totalClientes);
+            labelContador.setText(totalClientesInt);
+
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!", "AVISO", HEIGHT);
+        }
+    }
+
+    public void buscaTabela(String strParametroDeBusca) {
+
+        try {
+
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
+            EntityManager em = emf.createEntityManager();
+            strParametroDeBusca = "%" + strParametroDeBusca + "%";
+            List<Cliente> clientes = em.createQuery("select c from Cliente c WHERE c.nome LIKE :strParametroDeBusca or c.cpf LIKE :strParametroDeBusca or c.telefone LIKE :strParametroDeBusca or c.sexo LIKE :strParametroDeBusca or c.endereco LIKE :strParametroDeBusca or c.cidade LIKE :strParametroDeBusca or c.cep LIKE :strParametroDeBusca",
                     Cliente.class)
                     .setParameter("strParametroDeBusca", strParametroDeBusca)
                     .getResultList();
@@ -40,7 +61,6 @@ public class CrudGUI extends javax.swing.JFrame {
                         cliente1.getCep()};
                     model.addRow(linhasLista);
                     tableClientes.setModel(model);
-
                 }
             } else {
                 Object[] linhasLista = {
@@ -59,13 +79,12 @@ public class CrudGUI extends javax.swing.JFrame {
             caixaConsulta.setText("");
 
         } catch (Exception e1) {
-            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!", "AVISO", HEIGHT);
         }
 
     }
 
     public void tabelaGUI() {
-
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
             EntityManager em = emf.createEntityManager();
@@ -75,6 +94,7 @@ public class CrudGUI extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tableClientes.getModel();
             model.setNumRows(0);
 
+            this.temporario = clientes;
             for (Cliente cliente1 : clientes) {
 
                 Object[] linhasLista = {
@@ -91,7 +111,7 @@ public class CrudGUI extends javax.swing.JFrame {
             }
 
         } catch (Exception e1) {
-            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!", "AVISO", HEIGHT);
         }
     }
 
@@ -99,6 +119,7 @@ public class CrudGUI extends javax.swing.JFrame {
         initComponents();
 
         tabelaGUI();
+        contadorClientes();
     }
 
     /**
@@ -125,6 +146,9 @@ public class CrudGUI extends javax.swing.JFrame {
         tableClientes = new javax.swing.JTable();
         botaoEditar = new javax.swing.JButton();
         botaoCadastrar = new javax.swing.JButton();
+        labelContador = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,7 +159,7 @@ public class CrudGUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1087, Short.MAX_VALUE)
+            .addGap(0, 1059, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +176,7 @@ public class CrudGUI extends javax.swing.JFrame {
         caixaRemoverr.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lixeira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lixo.png"))); // NOI18N
-        lixeira.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lixeira.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lixeira.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lixeiraMouseClicked(evt);
@@ -164,7 +188,7 @@ public class CrudGUI extends javax.swing.JFrame {
         tituloRemover.setText("Digite o CPF para Remover");
 
         botaoLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lupa.png"))); // NOI18N
-        botaoLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoLupa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoLupaMouseClicked(evt);
@@ -176,7 +200,7 @@ public class CrudGUI extends javax.swing.JFrame {
         tituloConsulta.setText("Buscar");
 
         refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/seta-re.png"))); // NOI18N
-        refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         refresh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 refreshMouseClicked(evt);
@@ -236,7 +260,7 @@ public class CrudGUI extends javax.swing.JFrame {
         botaoEditar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         botaoEditar.setForeground(new java.awt.Color(255, 255, 255));
         botaoEditar.setText("Editar");
-        botaoEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoEditarMouseClicked(evt);
@@ -247,21 +271,41 @@ public class CrudGUI extends javax.swing.JFrame {
         botaoCadastrar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         botaoCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         botaoCadastrar.setText("Cadastrar");
-        botaoCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoCadastrarMouseClicked(evt);
             }
         });
 
+        labelContador.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        labelContador.setForeground(new java.awt.Color(255, 255, 255));
+        labelContador.setText("0");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/usertotal.png"))); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Total: ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(470, 470, 470)
-                .addComponent(refresh)
-                .addContainerGap(527, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(470, 470, 470)
+                        .addComponent(refresh))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelContador)))))
+                .addContainerGap(531, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(57, 57, 57)
@@ -300,7 +344,13 @@ public class CrudGUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(589, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(labelContador))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 495, Short.MAX_VALUE)
                 .addComponent(refresh)
                 .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,18 +389,18 @@ public class CrudGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -376,9 +426,11 @@ public class CrudGUI extends javax.swing.JFrame {
 
     private void botaoLupaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLupaMouseClicked
 
-        if(caixaConsulta.getText().equals("")){JOptionPane.showMessageDialog(null, "Nada Digitado!","AVISO",HEIGHT);}
-        else{
-        buscaTabela(caixaConsulta.getText());}
+        if (caixaConsulta.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nada Digitado!", "AVISO", HEIGHT);
+        } else {
+            buscaTabela(caixaConsulta.getText());
+        }
 
 //        Cliente cliente = new Cliente(caixaConsulta.getText());
 //
@@ -400,50 +452,65 @@ public class CrudGUI extends javax.swing.JFrame {
 
     private void lixeiraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lixeiraMouseClicked
 
-        try{
-        int isValido = JOptionPane.showConfirmDialog(null, "Tem Certeza?", "Aviso!", WIDTH, HEIGHT);
+        try {
+            int isValido = JOptionPane.showConfirmDialog(null, "Tem Certeza?", "Aviso!", WIDTH, HEIGHT);
 
-        if (0 == isValido) {
+            if (0 == isValido) {
 
-            Cliente clientes = new Cliente(caixaRemoverr.getText().replace(".", "").replace("-", ""));
+                Cliente clientes = new Cliente(caixaRemoverr.getText().replace(".", "").replace("-", ""));
 
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
-            EntityManager em = emf.createEntityManager();
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
+                EntityManager em = emf.createEntityManager();
 
-            List<Cliente> cliente = em.createQuery("select c from Cliente c where c.cpf=:cpfForm ", Cliente.class).setParameter("cpfForm", clientes.getCpf()).getResultList();
+                List<Cliente> cliente = em.createQuery("select c from Cliente c where c.cpf=:cpfForm ", Cliente.class).setParameter("cpfForm", clientes.getCpf()).getResultList();
 
-            System.out.println(cliente);
-            if (cliente.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!", "AVISO", HEIGHT);
-                em.close();
-            } else if (!cliente.isEmpty()) {
-                em.getTransaction().begin();
+                System.out.println(cliente);
+                if (cliente.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!", "AVISO", HEIGHT);
+                    em.close();
+                } else if (!cliente.isEmpty()) {
+                    em.getTransaction().begin();
 
-                em.remove(cliente.get(0));
+                    em.remove(cliente.get(0));
 
-                em.getTransaction().commit();
-                
-                tabelaGUI();
-                JOptionPane.showMessageDialog(null, "Cliente Removido Com Sucesso!", "AVISO", HEIGHT);
-                em.close();
+                    em.getTransaction().commit();
 
-            } 
+                    tabelaGUI();
+                    JOptionPane.showMessageDialog(null, "Cliente Removido Com Sucesso!", "AVISO", HEIGHT);
+                    em.close();
 
+                }
+
+            }
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!", "AVISO", HEIGHT);
         }
-        }catch (Exception e1) {
-            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
-        } 
 
         tabelaGUI();
         caixaRemoverr.setText("");
-        
+
 
     }//GEN-LAST:event_lixeiraMouseClicked
 
     private void botaoEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoEditarMouseClicked
-        new CrudEditarGUI().setVisible(true);
-        this.dispose();
 
+        boolean isVazio = (tableClientes.getSelectedRow() < 0);
+
+        Cliente cliente = new Cliente();
+
+
+        if (isVazio) {
+
+            new CrudEditarGUI().setVisible(true);
+            
+        } else {
+
+            cliente = this.temporario.get(tableClientes.getSelectedRow());
+            new CrudEditarGUI(cliente).setVisible(true);
+            
+        }
+        
+        this.dispose();
     }//GEN-LAST:event_botaoEditarMouseClicked
 
     /**
@@ -489,9 +556,12 @@ public class CrudGUI extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField caixaRemoverr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelContador;
     private javax.swing.JLabel lixeira;
     private javax.swing.JLabel refresh;
     private javax.swing.JTable tableClientes;
