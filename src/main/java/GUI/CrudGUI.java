@@ -14,6 +14,8 @@ public class CrudGUI extends javax.swing.JFrame {
     public void buscaTabela(String strParametroDeBusca) {
 
         try {
+            
+            
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
             EntityManager em = emf.createEntityManager();
 
@@ -42,8 +44,8 @@ public class CrudGUI extends javax.swing.JFrame {
                 }
             } else {
                 Object[] linhasLista = {
-                    "",
                     "NADA ENCONTRADO",
+                    "",
                     "",
                     "",
                     "",
@@ -57,7 +59,7 @@ public class CrudGUI extends javax.swing.JFrame {
             caixaConsulta.setText("");
 
         } catch (Exception e1) {
-            System.out.println(e1);
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
         }
 
     }
@@ -89,7 +91,7 @@ public class CrudGUI extends javax.swing.JFrame {
             }
 
         } catch (Exception e1) {
-            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!");
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
         }
     }
 
@@ -108,41 +110,85 @@ public class CrudGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botaoCadastrar = new javax.swing.JButton();
-        botaoEditar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        caixaRemoverr = new javax.swing.JFormattedTextField();
+        lixeira = new javax.swing.JLabel();
+        tituloRemover = new javax.swing.JLabel();
+        botaoLupa = new javax.swing.JLabel();
+        caixaConsulta = new javax.swing.JTextField();
+        tituloConsulta = new javax.swing.JLabel();
+        refresh = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableClientes = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        refresh = new javax.swing.JLabel();
-        tituloConsulta = new javax.swing.JLabel();
-        caixaConsulta = new javax.swing.JTextField();
-        botaoLupa = new javax.swing.JLabel();
-        tituloRemover = new javax.swing.JLabel();
-        lixeira = new javax.swing.JLabel();
-        caixaRemoverr = new javax.swing.JFormattedTextField();
+        botaoEditar = new javax.swing.JButton();
+        botaoCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        botaoCadastrar.setBackground(new java.awt.Color(0, 9, 39));
-        botaoCadastrar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        botaoCadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        botaoCadastrar.setText("Cadastrar");
-        botaoCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel2.setBackground(java.awt.Color.darkGray);
+        jPanel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1087, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 679, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
+        try {
+            caixaRemoverr.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        caixaRemoverr.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lixeira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lixo.png"))); // NOI18N
+        lixeira.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lixeira.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoCadastrarMouseClicked(evt);
+                lixeiraMouseClicked(evt);
             }
         });
 
-        botaoEditar.setBackground(new java.awt.Color(0, 9, 39));
-        botaoEditar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        botaoEditar.setForeground(new java.awt.Color(255, 255, 255));
-        botaoEditar.setText("Editar");
-        botaoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+        tituloRemover.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloRemover.setForeground(new java.awt.Color(255, 255, 255));
+        tituloRemover.setText("Digite o CPF para Remover");
+
+        botaoLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lupa.png"))); // NOI18N
+        botaoLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoLupa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoEditarMouseClicked(evt);
+                botaoLupaMouseClicked(evt);
             }
         });
+
+        tituloConsulta.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloConsulta.setForeground(new java.awt.Color(255, 255, 255));
+        tituloConsulta.setText("Buscar");
+
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/seta-re.png"))); // NOI18N
+        refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshMouseClicked(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Apps-Java-icon.png"))); // NOI18N
+
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("CRUD");
 
         tableClientes.setBackground(new java.awt.Color(102, 102, 102));
         tableClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -171,6 +217,7 @@ public class CrudGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableClientes.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setViewportView(tableClientes);
         if (tableClientes.getColumnModel().getColumnCount() > 0) {
             tableClientes.getColumnModel().getColumn(1).setMinWidth(90);
@@ -185,124 +232,127 @@ public class CrudGUI extends javax.swing.JFrame {
             tableClientes.getColumnModel().getColumn(6).setMaxWidth(90);
         }
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("CRUD");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Apps-Java-icon.png"))); // NOI18N
-
-        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/seta-re.png"))); // NOI18N
-        refresh.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoEditar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoEditar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoEditar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoEditar.setText("Editar");
+        botaoEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                refreshMouseClicked(evt);
+                botaoEditarMouseClicked(evt);
             }
         });
 
-        tituloConsulta.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        tituloConsulta.setText("Buscar");
-
-        botaoLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lupa.png"))); // NOI18N
-        botaoLupa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botaoLupa.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoCadastrar.setBackground(new java.awt.Color(0, 9, 39));
+        botaoCadastrar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botaoCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoCadastrar.setText("Cadastrar");
+        botaoCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoLupaMouseClicked(evt);
+                botaoCadastrarMouseClicked(evt);
             }
         });
 
-        tituloRemover.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        tituloRemover.setText("Digite o CPF para Remover");
-
-        lixeira.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lixo.png"))); // NOI18N
-        lixeira.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lixeira.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lixeiraMouseClicked(evt);
-            }
-        });
-
-        try {
-            caixaRemoverr.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        caixaRemoverr.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(470, 470, 470)
+                .addComponent(refresh)
+                .addContainerGap(527, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(57, 57, 57)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(380, 380, 380)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(13, 13, 13)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tituloConsulta)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(caixaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(botaoLupa)))
+                            .addGap(194, 194, 194)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(caixaRemoverr, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tituloRemover))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lixeira)
+                            .addGap(100, 100, 100))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(226, 226, 226)
+                                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(114, 114, 114)
+                                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap(74, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(589, Short.MAX_VALUE)
+                .addComponent(refresh)
+                .addGap(25, 25, 25))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jLabel2)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(1, 1, 1)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(tituloRemover)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lixeira)
+                                .addComponent(caixaRemoverr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(botaoLupa)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(tituloConsulta)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(caixaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(2, 2, 2)))
+                    .addGap(24, 24, 24)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(27, 27, 27)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botaoCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(16, 16, 16)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(475, 475, 475)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(13, 13, 13)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tituloConsulta)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(caixaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botaoLupa)))
-                        .addGap(194, 194, 194)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(caixaRemoverr, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tituloRemover))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lixeira)
-                        .addGap(194, 194, 194))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(226, 226, 226)
-                                .addComponent(botaoCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
-                                .addComponent(refresh)
-                                .addGap(37, 37, 37)
-                                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(94, 94, 94))))
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tituloRemover)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lixeira)
-                            .addComponent(caixaRemoverr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botaoLupa)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tituloConsulta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(caixaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2)))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(refresh)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(44, 44, 44))
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -326,7 +376,9 @@ public class CrudGUI extends javax.swing.JFrame {
 
     private void botaoLupaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoLupaMouseClicked
 
-        buscaTabela(caixaConsulta.getText());
+        if(caixaConsulta.getText().equals("")){JOptionPane.showMessageDialog(null, "Nada Digitado!","AVISO",HEIGHT);}
+        else{
+        buscaTabela(caixaConsulta.getText());}
 
 //        Cliente cliente = new Cliente(caixaConsulta.getText());
 //
@@ -348,7 +400,8 @@ public class CrudGUI extends javax.swing.JFrame {
 
     private void lixeiraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lixeiraMouseClicked
 
-        int isValido = JOptionPane.showConfirmDialog(null, "Tem Certeza que deseja remover este usuário?");
+        try{
+        int isValido = JOptionPane.showConfirmDialog(null, "Tem Certeza?", "Aviso!", WIDTH, HEIGHT);
 
         if (0 == isValido) {
 
@@ -361,27 +414,29 @@ public class CrudGUI extends javax.swing.JFrame {
 
             System.out.println(cliente);
             if (cliente.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");
+                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!", "AVISO", HEIGHT);
+                em.close();
             } else if (!cliente.isEmpty()) {
                 em.getTransaction().begin();
 
                 em.remove(cliente.get(0));
 
                 em.getTransaction().commit();
-                em.close();
+                
                 tabelaGUI();
-                JOptionPane.showMessageDialog(null, "Cliente Removido Com Sucesso!");
+                JOptionPane.showMessageDialog(null, "Cliente Removido Com Sucesso!", "AVISO", HEIGHT);
+                em.close();
 
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Não é possível");
-
-            }
+            } 
 
         }
+        }catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
+        } 
 
         tabelaGUI();
         caixaRemoverr.setText("");
+        
 
     }//GEN-LAST:event_lixeiraMouseClicked
 
@@ -434,6 +489,8 @@ public class CrudGUI extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField caixaRemoverr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lixeira;
     private javax.swing.JLabel refresh;

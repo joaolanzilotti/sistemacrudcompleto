@@ -24,6 +24,8 @@ public class CrudEditarGUI extends javax.swing.JFrame {
      */
     public CrudEditarGUI() {
         initComponents();
+        
+        botaoEditar.setVisible(false);
 
 //        botaoEditar.setVisible(false);
 //        caixaNome.setVisible(false);
@@ -66,10 +68,13 @@ public class CrudEditarGUI extends javax.swing.JFrame {
         tituloCep = new javax.swing.JLabel();
         caixaTelefone = new javax.swing.JFormattedTextField();
         caixaCep = new javax.swing.JFormattedTextField();
-        jLabel8 = new javax.swing.JLabel();
-        botaoProcurar = new javax.swing.JButton();
+        botaoProcurar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        telaEditar.setBackground(new java.awt.Color(102, 102, 102));
 
         try {
             caixaCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -79,12 +84,14 @@ public class CrudEditarGUI extends javax.swing.JFrame {
         caixaCpf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         tituloCpf.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        tituloCpf.setForeground(new java.awt.Color(255, 255, 255));
         tituloCpf.setText("Digite o CPF do Cliente Para Editá-lo");
 
         botaoEditar.setBackground(new java.awt.Color(0, 9, 39));
         botaoEditar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         botaoEditar.setForeground(new java.awt.Color(255, 255, 255));
         botaoEditar.setText("Editar");
+        botaoEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoEditarMouseClicked(evt);
@@ -95,6 +102,7 @@ public class CrudEditarGUI extends javax.swing.JFrame {
         botaoVoltar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         botaoVoltar.setForeground(new java.awt.Color(255, 255, 255));
         botaoVoltar.setText("Voltar");
+        botaoVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoVoltarMouseClicked(evt);
@@ -102,21 +110,27 @@ public class CrudEditarGUI extends javax.swing.JFrame {
         });
 
         tituloEndereco.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloEndereco.setForeground(new java.awt.Color(255, 255, 255));
         tituloEndereco.setText("Endereco");
 
         tituloSexo.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloSexo.setForeground(new java.awt.Color(255, 255, 255));
         tituloSexo.setText("Sexo");
 
         tituloCidade.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloCidade.setForeground(new java.awt.Color(255, 255, 255));
         tituloCidade.setText("Cidade");
 
         tituloTelefone.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloTelefone.setForeground(new java.awt.Color(255, 255, 255));
         tituloTelefone.setText("Telefone");
 
         tituloNome.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloNome.setForeground(new java.awt.Color(255, 255, 255));
         tituloNome.setText("Nome");
 
         tituloCep.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        tituloCep.setForeground(new java.awt.Color(255, 255, 255));
         tituloCep.setText("Cep");
 
         try {
@@ -131,106 +145,111 @@ public class CrudEditarGUI extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        jLabel8.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel8.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("Editar Cliente");
-
-        botaoProcurar.setBackground(new java.awt.Color(0, 9, 39));
-        botaoProcurar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        botaoProcurar.setForeground(new java.awt.Color(255, 255, 255));
-        botaoProcurar.setText("Procurar");
+        botaoProcurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/lupa.png"))); // NOI18N
+        botaoProcurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoProcurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botaoProcurarMouseClicked(evt);
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/useredit.png"))); // NOI18N
+
         javax.swing.GroupLayout telaEditarLayout = new javax.swing.GroupLayout(telaEditar);
         telaEditar.setLayout(telaEditarLayout);
         telaEditarLayout.setHorizontalGroup(
             telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(telaEditarLayout.createSequentialGroup()
-                .addContainerGap(217, Short.MAX_VALUE)
-                .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(199, 199, 199))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(telaEditarLayout.createSequentialGroup()
-                            .addComponent(caixaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(botaoProcurar)
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
-                            .addComponent(tituloCpf)
-                            .addGap(140, 140, 140)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
-                        .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180))))
-            .addGroup(telaEditarLayout.createSequentialGroup()
                 .addComponent(botaoVoltar)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(telaEditarLayout.createSequentialGroup()
-                    .addContainerGap(91, Short.MAX_VALUE)
-                    .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tituloCep)
-                        .addComponent(tituloTelefone)
-                        .addComponent(tituloCidade)
-                        .addComponent(tituloSexo)
-                        .addComponent(tituloEndereco)
-                        .addComponent(caixaNome)
-                        .addComponent(caixaTelefone)
-                        .addComponent(caixaCep)
-                        .addComponent(caixaSexo)
-                        .addComponent(caixaEndereco)
-                        .addComponent(caixaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tituloNome))
-                    .addGap(6, 6, 6)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
+                .addGap(0, 96, Short.MAX_VALUE)
+                .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
+                        .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(caixaCep, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tituloCep)
+                            .addComponent(caixaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tituloCidade)
+                            .addComponent(caixaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tituloEndereco)
+                            .addComponent(caixaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tituloSexo)
+                            .addComponent(tituloNome)
+                            .addComponent(tituloTelefone)
+                            .addComponent(caixaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(caixaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(97, 97, 97))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
+                        .addComponent(tituloCpf)
+                        .addGap(120, 120, 120))))
+            .addGroup(telaEditarLayout.createSequentialGroup()
+                .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(telaEditarLayout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(telaEditarLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(caixaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botaoProcurar))
+                    .addGroup(telaEditarLayout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         telaEditarLayout.setVerticalGroup(
             telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(telaEditarLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaEditarLayout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(42, 42, 42)
                 .addComponent(tituloCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(caixaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoProcurar))
-                .addGap(362, 362, 362)
+                .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoProcurar)
+                    .addComponent(caixaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(tituloNome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tituloTelefone)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tituloSexo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tituloEndereco)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tituloCidade)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tituloCep)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(47, 47, 47)
                 .addComponent(botaoVoltar))
-            .addGroup(telaEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(telaEditarLayout.createSequentialGroup()
-                    .addContainerGap(139, Short.MAX_VALUE)
-                    .addComponent(tituloNome)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(caixaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tituloTelefone)
-                    .addGap(2, 2, 2)
-                    .addComponent(caixaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tituloSexo)
-                    .addGap(5, 5, 5)
-                    .addComponent(caixaSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(tituloEndereco)
-                    .addGap(1, 1, 1)
-                    .addComponent(caixaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(tituloCidade)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(caixaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(13, 13, 13)
-                    .addComponent(tituloCep)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(caixaCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(119, 119, 119)))
+        );
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 587, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 648, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,16 +257,20 @@ public class CrudEditarGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 165, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(telaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 165, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 27, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
                 .addComponent(telaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -265,12 +288,12 @@ public class CrudEditarGUI extends javax.swing.JFrame {
             List<Cliente> clientes = em.createQuery("select c from Cliente c where c.cpf=:cpfForm", Cliente.class).setParameter("cpfForm", cliente.getCpf()).getResultList();
 
             if (caixaNome.getText().equals("") || caixaTelefone.getText().equals("") || caixaSexo.getText().equals("") || caixaEndereco.getText().equals("") || caixaCidade.getText().equals("") || caixaCep.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Campos Obrigatórios!");
+                JOptionPane.showMessageDialog(null, "Campos Obrigatórios!","AVISO",HEIGHT);
             }
             else if (caixaCpf.getText().equals("   .   .   -  ")) {
-                JOptionPane.showMessageDialog(null, "CPF Não Digitado");
+                JOptionPane.showMessageDialog(null, "CPF Não Digitado","AVISO",HEIGHT);
             } else if (clientes.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");
+                JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!","AVISO",HEIGHT);
             } else {
 
                 for (Cliente cliente1 : clientes) {
@@ -288,14 +311,14 @@ public class CrudEditarGUI extends javax.swing.JFrame {
 
                 }
 
-                JOptionPane.showMessageDialog(null, "Dados Alterado Com Sucesso!");
+                JOptionPane.showMessageDialog(null, "Dados Alterado Com Sucesso!","AVISO",WIDTH);
                 em.close();
                 new CrudGUI().setVisible(true);
                 this.dispose();
             }
 
         } catch (Exception e1) {
-            JOptionPane.showMessageDialog(null, e1);
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
         }
 
     }//GEN-LAST:event_botaoEditarMouseClicked
@@ -306,7 +329,8 @@ public class CrudEditarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVoltarMouseClicked
 
     private void botaoProcurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoProcurarMouseClicked
-
+        
+        try{
         Cliente cliente = new Cliente(caixaCpf.getText().replace(".", "").replace("-", ""));
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("crud");
@@ -317,14 +341,15 @@ public class CrudEditarGUI extends javax.swing.JFrame {
         System.out.println(clientes);
 
         if (caixaCpf.getText().equals("   .   .   -  ")) {
-            JOptionPane.showMessageDialog(null, "CPF Não Digitado");
+            JOptionPane.showMessageDialog(null, "CPF Não Digitado","AVISO",HEIGHT);
         } else if (clientes.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!");
+            JOptionPane.showMessageDialog(null, "Cliente Não Encontrado!","AVISO",HEIGHT);
         } else {
 
             for (Cliente cliente1 : clientes) {
 
-                JOptionPane.showMessageDialog(null, "Cliente Encontrado!");
+                JOptionPane.showMessageDialog(null, "Cliente Encontrado!","AVISO",WIDTH);
+                botaoEditar.setVisible(true);
                 caixaNome.setText(cliente1.getNome());
                 caixaTelefone.setText(cliente1.getTelefone());
                 caixaSexo.setText(cliente1.getSexo());
@@ -334,7 +359,9 @@ public class CrudEditarGUI extends javax.swing.JFrame {
             }
 
         }
-
+        }catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, "Servidor Sem Conexão!","AVISO",HEIGHT);
+        }
     }//GEN-LAST:event_botaoProcurarMouseClicked
 
     /**
@@ -377,7 +404,7 @@ public class CrudEditarGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoEditar;
-    private javax.swing.JButton botaoProcurar;
+    private javax.swing.JLabel botaoProcurar;
     private javax.swing.JButton botaoVoltar;
     private javax.swing.JFormattedTextField caixaCep;
     private javax.swing.JTextField caixaCidade;
@@ -386,7 +413,8 @@ public class CrudEditarGUI extends javax.swing.JFrame {
     private javax.swing.JTextField caixaNome;
     private javax.swing.JTextField caixaSexo;
     private javax.swing.JFormattedTextField caixaTelefone;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel telaEditar;
     private javax.swing.JLabel tituloCep;
     private javax.swing.JLabel tituloCidade;
