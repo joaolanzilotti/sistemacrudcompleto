@@ -128,7 +128,7 @@ public class CrudGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(java.awt.Color.darkGray);
+        jPanel2.setBackground(new java.awt.Color(57, 57, 57));
         jPanel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -142,7 +142,7 @@ public class CrudGUI extends javax.swing.JFrame {
             .addGap(0, 679, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         try {
             caixaRemoverr.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));

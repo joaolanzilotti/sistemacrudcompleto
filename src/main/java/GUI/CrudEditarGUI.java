@@ -74,7 +74,7 @@ public class CrudEditarGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        telaEditar.setBackground(new java.awt.Color(102, 102, 102));
+        telaEditar.setBackground(new java.awt.Color(51, 51, 51));
 
         try {
             caixaCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -239,7 +239,7 @@ public class CrudEditarGUI extends javax.swing.JFrame {
                 .addComponent(botaoVoltar))
         );
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(57, 57, 57));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
